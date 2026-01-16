@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artistic Photography Portfolio | SAKIF AHSAN </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Artistic Typography: Playfair Display for headings, Inter for body */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .gallery-item {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+        }
+
+        .filter-btn {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 50%;
+            background: black;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .filter-btn.active::after {
+            width: 80%;
+        }
+
+        .filter-btn.active {
+            font-weight: 600;
+        }
+
+        /* Artistic Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fff;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #000;
+        }
+
+        .heading-line {
+            width: 60px;
+            height: 1px;
+            background: #000;
+            display: inline-block;
+            margin-bottom: 8px;
+            vertical-align: middle;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+            <div class="text-2xl font-bold serif tracking-tight"> SAKIF AHSAN <span class="text-xs font-normal sans-serif tracking-[0.3em] ml-2 block sm:inline text-gray-400">VISUAL DIARY</span></div>
+            <div class="hidden md:flex space-x-12 text-[11px] font-medium uppercase tracking-[0.2em]">
+                <a href="#work" class="hover:text-gray-400 transition">Portfolio</a>
+                <a href="#about" class="hover:text-gray-400 transition">The Story</a>
+                <a href="#contact" class="hover:text-gray-400 transition">Inquiries</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-xl"><i class="fas fa-minus"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="min-h-screen flex items-center px-6 pt-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-4 flex items-center">
+                <span class="heading-line"></span>
+                <span class="text-xs tracking-[0.4em] uppercase text-gray-400">Dhaka & Beyond</span>
+            </div>
+            <h1 class="text-6xl md:text-9xl leading-[1.1] mb-12">
+                Fragments of <br>
+                <span class="italic font-normal">Light & Life.</span>
+            </h1>
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+                <p class="text-lg md:text-xl text-gray-500 max-w-xl leading-relaxed serif italic">
+                    Exploring the quiet moments in chaos. From the intimate gaze of an event to the architectural stillness of a product.
+                </p>
+                <a href="#work" class="group relative inline-block text-xs tracking-[0.3em] uppercase pb-2">
+                    Discover Work
+                    <span class="absolute bottom-0 left-0 w-full h-[1px] bg-black group-hover:w-0 transition-all duration-500"></span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Portfolio Section -->
+    <section id="work" class="py-32 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-baseline mb-20 gap-8">
+                <h2 class="text-4xl md:text-5xl">Selected Works</h2>
+                
+                <!-- Filter Controls -->
+                <div class="flex flex-wrap gap-8 text-[10px] font-bold uppercase tracking-[0.2em]">
+                    <button onclick="filterGallery('all')" class="filter-btn active" data-filter="all">All</button>
+                    <button onclick="filterGallery('events')" class="filter-btn" data-filter="events">Events</button>
+                    <button onclick="filterGallery('products')" class="filter-btn" data-filter="products">Commercial</button>
+                    <button onclick="filterGallery('nature')" class="filter-btn" data-filter="nature">Nature</button>
+                    <button onclick="filterGallery('street')" class="filter-btn" data-filter="street">Street</button>
+                </div>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div id="gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24">
+                <!-- Event Example -->
+                <div class="gallery-item events group">
+                    <div class="overflow-hidden rounded-sm aspect-[3/4] mb-6">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800" class="object-cover w-full h-full grayscale group-hover:grayscale-0 transition duration-1000">
+                    </div>
+                    <h3 class="text-xl mb-1">Traditional Union</h3>
+                    <p class="text-[10px] uppercase tracking-widest text-gray-400">Events / 2024</p>
+                </div>
+
+                <!-- Product Example -->
+                <div class="gallery-item products group">
+                    <div class="overflow-hidden rounded-sm aspect-[3/4] mb-6">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=800" class="object-cover w-full h-full grayscale group-hover:grayscale-0 transition duration-1000">
+                    </div>
+                    <h3 class="text-xl mb-1">The Minimalist Time</h3>
+                    <p class="text-[10px] uppercase tracking-widest text-gray-400">Product / Branding</p>
+                </div>
+
+                <!-- Nature Example -->
+                <div class="gallery-item nature group lg:mt-24">
+                    <div class="overflow-hidden rounded-sm aspect-[3/4] mb-6">
+                        <img src="img/ramna.jpg" class="object-cover w-full h-full grayscale group-hover:grayscale-0 transition duration-1000">
+                    </div>
+                    <h3 class="text-xl mb-1">Ramna, Dhaka</h3>
+                    <p class="text-[10px] uppercase tracking-widest text-gray-400">Nature / Landscape</p>
+                </div>
+
+                <!-- Street Example -->
+                <div class="gallery-item street group">
+                    <div class="overflow-hidden rounded-sm aspect-[3/4] mb-6">
+                        <img src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&q=80&w=800" class="object-cover w-full h-full grayscale group-hover:grayscale-0 transition duration-1000">
+                    </div>
+                    <h3 class="text-xl mb-1">Puran Dhaka Rhythms</h3>
+                    <p class="text-[10px] uppercase tracking-widest text-gray-400">Street / Life</p>
+                </div>
+
+                <!-- Product Example -->
+                <div class="gallery-item products group lg:-mt-24">
+                    <div class="overflow-hidden rounded-sm aspect-[3/4] mb-6">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=800" class="object-cover w-full h-full grayscale group-hover:grayscale-0 transition duration-1000">
+                    </div>
+                    <h3 class="text-xl mb-1">Studio Study #04</h3>
+                    <p class="text-[10px] uppercase tracking-widest text-gray-400">Commercial</p>
+                </div>
+
+                <!-- Event Example -->
+                <div class="gallery-item events group">
+                    <div class="overflow-hidden rounded-sm aspect-[3/4] mb-6">
+                        <img src="img/Dhakalyf.jpg" class="object-cover w-full h-full grayscale group-hover:grayscale-0 transition duration-1000">
+                    </div>
+                    <h3 class="text-xl mb-1">Dhaka Street Life</h3>
+                    <p class="text-[10px] uppercase tracking-widest text-gray-400">Events</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 bg-[#fafafa]">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-12 gap-16 items-center">
+            <div class="md:col-span-5 relative">
+                <img src="img/main.jpg" class="w-full rounded-sm grayscale">
+                <div class="absolute -bottom-8 -right-8 w-48 h-48 bg-white p-4 hidden md:block border border-gray-100">
+                     <p class="text-[10px] uppercase tracking-widest leading-loose">"To photograph is to hold one's breath, when all faculties converge to capture fleeting reality."</p>
+                </div>
+            </div>
+            <div class="md:col-span-7">
+                <div class="mb-4 flex items-center">
+                    <span class="heading-line"></span>
+                    <span class="text-xs tracking-[0.4em] uppercase text-gray-400">The Philosophy</span>
+                </div>
+                <h2 class="text-5xl mb-8">Capturing the <br><span class="italic font-normal">Unseen Bangladesh.</span></h2>
+                <p class="text-gray-500 text-lg leading-relaxed mb-8 serif italic">
+                    For over half a decade, I have focused on the details that others walk past. My approach is minimalist, focused on composition, and deeply rooted in the stories of my homeland.
+                </p>
+                <div class="flex gap-12 text-[10px] uppercase tracking-widest">
+                    <div>
+                        <p class="text-gray-400 mb-2">Base</p>
+                        <p class="font-bold">Dhaka & Khulna BD</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-400 mb-2">Experience</p>
+                        <p class="font-bold">3+ Years</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-400 mb-2">Focus</p>
+                        <p class="font-bold">Storytelling</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 px-6">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-6xl mb-12 italic">Let's talk about <br>your vision.</h2>
+            
+            <div class="flex flex-wrap justify-center gap-12 mb-20 text-[11px] font-bold uppercase tracking-[0.2em]">
+                <a href="mailto:hello@yourname.com" class="hover:text-gray-400">Email</a>
+                <a href="#" class="hover:text-gray-400">Instagram</a>
+                <a href="#" class="hover:text-gray-400">WhatsApp</a>
+            </div>
+
+            <form class="text-left space-y-12">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="border-b border-gray-200 py-4">
+                        <input type="text" placeholder="Your Name" class="w-full outline-none bg-transparent placeholder:text-gray-300 text-sm">
+                    </div>
+                    <div class="border-b border-gray-200 py-4">
+                        <input type="email" placeholder="Email Address" class="w-full outline-none bg-transparent placeholder:text-gray-300 text-sm">
+                    </div>
+                </div>
+                <div class="border-b border-gray-200 py-4">
+                    <textarea placeholder="Tell me about your project..." rows="3" class="w-full outline-none bg-transparent placeholder:text-gray-300 text-sm resize-none"></textarea>
+                </div>
+                <button class="bg-black text-white px-12 py-5 rounded-sm text-[10px] uppercase tracking-[0.3em] hover:bg-gray-900 transition flex items-center gap-4 mx-auto md:mx-0">
+                    Send Inquiry <i class="fas fa-long-arrow-alt-right"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-100 text-center px-6">
+        <p class="text-[10px] tracking-[0.4em] uppercase text-gray-400">&copy; 2026 SAKIF AHSAN Portfolio &mdash; Established in Dhaka</p>
+    </footer>
+
+    <script>
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-filter') === category) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                    setTimeout(() => item.style.opacity = '1', 50);
+                } else {
+                    item.style.opacity = '0';
+                    setTimeout(() => item.style.display = 'none', 500);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
